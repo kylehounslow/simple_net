@@ -6,8 +6,6 @@ from joelnet.tensor import Tensor
 
 
 class Loss(Tensor):
-    def __init__(self):
-        pass
 
     def loss(self, predicted: Tensor, actual: Tensor) -> float:
         raise NotImplementedError
