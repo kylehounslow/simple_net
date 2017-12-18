@@ -20,7 +20,7 @@ class MSE(Loss):
     """
 
     def loss(self, predicted: Tensor, actual: Tensor) -> float:
-        return np.sum(predicted - actual) ** 2
+        return np.sum((predicted - actual) ** 2)
 
     def grad(self, predicted: Tensor, actual: Tensor) -> Tensor:
         return 2 * (predicted - actual)
