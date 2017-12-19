@@ -1,7 +1,7 @@
 """
 Training!
 """
-
+from tqdm import tqdm
 from joelnet.tensor import Tensor
 from joelnet.nn import NeuralNet
 from joelnet.loss import Loss, MSE
@@ -16,7 +16,7 @@ def train(net: NeuralNet,
           iterator: DataIterator = BatchIterator(),
           loss: Loss = MSE(),
           optimizer: Optimizer = SGD()) -> None:
-    for epoch in range(num_epochs):
+    for epoch in tqdm(range(num_epochs)):
         epoch_loss = 0.0
         for batch in iterator(inputs, targets):
             predicted = net.forward(batch.inputs)
@@ -24,4 +24,4 @@ def train(net: NeuralNet,
             grad = loss.grad(predicted, batch.targets)
             net.backward(grad)
             optimizer.step(net)
-        print(epoch, epoch_loss)
+        # print(epoch, epoch_loss)
